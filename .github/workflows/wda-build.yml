@@ -106,16 +106,7 @@ jobs:
               DEVELOPMENT_TEAM="$TEAM" \
               PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME"
             cd "$GITHUB_WORKSPACE"
-            cat > exportOptions.plist <<EOF
-            <?xml version="1.0" encoding="UTF-8"?>
-            <plist version="1.0"><dict>
-              <key>method</key><string>development</string>
-              <key>teamID</key><string>$TEAM</string>
-              <key>signingCertificate</key><string>Apple Development</string>
-              <key>provisioningProfiles</key>
-              <dict><key>$BUNDLE_ID</key><string>$PROFILE_NAME</string></dict>
-            </dict></plist>
-            EOF
+            printf '<?xml version="1.0" encoding="UTF-8"?>\n<plist version="1.0"><dict>\n<key>method</key><string>development</string>\n<key>teamID</key><string>%s</string>\n<key>signingCertificate</key><string>Apple Development</string>\n<key>provisioningProfiles</key>\n<dict><key>%s</key><string>%s</string></dict>\n</dict></plist>\n' "$TEAM" "$BUNDLE_ID" "$PROFILE_NAME" > exportOptions.plist
             mkdir -p out
             xcodebuild -exportArchive \
               -archivePath "$GITHUB_WORKSPACE/wda.xcarchive" \
