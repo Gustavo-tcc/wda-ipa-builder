@@ -63,25 +63,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: sign (log completo em sign.log)
+      - name: sign (log completo em sign.log, secrets blindados)
         run: |
-          set -x
           set -o pipefail
           {
+            set -x
             git config --global user.email "ci@wda-ipa-builder.local"
             git config --global user.name "ci"
             git config --global --add safe.directory "$GITHUB_WORKSPACE"
             echo "APPLE_ID set: ${APPLE_ID:+yes}"
             sudo gem install fastlane -N --no-document
             fastlane --version
-            echo "$DEVICE_UDID" > devices.txt
             mkdir -p /tmp/matchrepo && cd /tmp/matchrepo
             git init -q && git commit -q --allow-empty -m init
             cd "$GITHUB_WORKSPACE"
+            set +x
             export FASTLANE_USER="$APPLE_ID"
             export FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="$APPLE_ASP"
             export MATCH_PASSWORD="wda-poc"
-            fastlane run register_devices devices_file:devices.txt
+            set -x
+            fastlane run register_device udid:"$DEVICE_UDID" name:"iPad-PoC"
             fastlane match development \
               --app_identifier "$BUNDLE_ID" \
               --git_url "file:///tmp/matchrepo" \
@@ -129,10 +130,10 @@ jobs:
             --notes "IPA assinado com Apple Development + profile com UDID 8c2ed50ba1cabe9fa883d83417fc5b97b8eb8136." \
             --repo "$GITHUB_REPOSITORY"
 
-      - name: Commitar log do sign p/ debug
+      - name: Commitar log do sign p/ debug (sem secrets)
         if: always()
         run: |
-          cp sign.log ci-sign-log.txt 2>/dev/null || echo "sem sign.log" > ci-sign-log.txt
+          if [ -f sign.log ]; then grep -v -i "password|ASP" sign.log > ci-sign-log.txt || cp sign.log ci-sign-log.txt; else echo "sem sign.log" > ci-sign-log.txt; fi
           git add -A
           git commit -qm "ci: sign log run ${GITHUB_RUN_NUMBER}" || true
           git push || true
