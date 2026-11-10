@@ -1,0 +1,37 @@
++ git config --global user.email ci@wda-ipa-builder.local
++ git config --global user.name ci
++ git config --global --add safe.directory /Users/runner/work/wda-ipa-builder/wda-ipa-builder
++ echo 'APPLE_ID set: yes'
+APPLE_ID set: yes
++ sudo gem install fastlane -N --no-document
+Successfully installed fastlane-2.241.2
+1 gem installed
++ fastlane --version
+fastlane installation at path:
+/opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/bin/fastlane
+-----------------------------
+fastlane 2.241.2
++ echo 8c2ed50ba1cabe9fa883d83417fc5b97b8eb8136
++ mkdir -p /tmp/matchrepo
++ cd /tmp/matchrepo
++ git init -q
++ git commit -q --allow-empty -m init
++ cd /Users/runner/work/wda-ipa-builder/wda-ipa-builder
++ export FASTLANE_USER=gtcchiesa@hotmail.com
++ FASTLANE_USER=gtcchiesa@hotmail.com
++ export FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=***REMOVED***
++ FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=***REMOVED***
++ export MATCH_PASSWORD=wda-poc
++ MATCH_PASSWORD=wda-poc
++ fastlane run register_devices devices_file:devices.txt
+[03:51:52]: [33mGet started using a Gemfile for fastlane https://docs.fastlane.tools/getting-started/ios/setup/#use-a-gemfile[0m
+[03:51:52]: fastlane 2.241.2 (Ruby 3.3.13, gem)
+[03:51:52]: Sending anonymous analytics information
+[03:51:52]: Learn more at https://docs.fastlane.tools/#metrics
+[03:51:52]: No personal or sensitive data is sent.
+[03:51:52]: You can disable this by adding `opt_out_usage` at the top of your Fastfile
+[03:51:52]: [32m------------------------------[0m
+[03:51:52]: [32m--- Step: register_devices ---[0m
+[03:51:52]: [32m------------------------------[0m
+[31m
+[!] Please provide a file according to the Apple Sample UDID file (https://developer.apple.com/account/resources/downloads/Multiple-Upload-Samples.zip)[0m
