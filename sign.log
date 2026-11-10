@@ -24,14 +24,14 @@ fastlane 2.241.2
 + export MATCH_PASSWORD=wda-poc
 + MATCH_PASSWORD=wda-poc
 + fastlane run register_devices devices_file:devices.txt
-[03:51:52]: [33mGet started using a Gemfile for fastlane https://docs.fastlane.tools/getting-started/ios/setup/#use-a-gemfile[0m
-[03:51:52]: fastlane 2.241.2 (Ruby 3.3.13, gem)
-[03:51:52]: Sending anonymous analytics information
-[03:51:52]: Learn more at https://docs.fastlane.tools/#metrics
-[03:51:52]: No personal or sensitive data is sent.
-[03:51:52]: You can disable this by adding `opt_out_usage` at the top of your Fastfile
-[03:51:52]: [32m------------------------------[0m
-[03:51:52]: [32m--- Step: register_devices ---[0m
-[03:51:52]: [32m------------------------------[0m
+[04:20:12]: [33mGet started using a Gemfile for fastlane https://docs.fastlane.tools/getting-started/ios/setup/#use-a-gemfile[0m
+[04:20:12]: fastlane 2.241.2 (Ruby 3.3.13, gem)
+[04:20:13]: Sending anonymous analytics information
+[04:20:13]: Learn more at https://docs.fastlane.tools/#metrics
+[04:20:13]: No personal or sensitive data is sent.
+[04:20:13]: You can disable this by adding `opt_out_usage` at the top of your Fastfile
+[04:20:13]: [32m------------------------------[0m
+[04:20:13]: [32m--- Step: register_devices ---[0m
+[04:20:13]: [32m------------------------------[0m
 [31m
 [!] Please provide a file according to the Apple Sample UDID file (https://developer.apple.com/account/resources/downloads/Multiple-Upload-Samples.zip)[0m
