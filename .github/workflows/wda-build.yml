@@ -3,8 +3,6 @@ name: Build WDA IPA
 "on":
   push:
   workflow_dispatch:
-  schedule:
-    - cron: "*/20 * * * *"
 
 permissions:
   contents: write
@@ -134,7 +132,7 @@ jobs:
       - name: Commitar log do sign p/ debug (sem secrets)
         if: always()
         run: |
-          if [ -f sign.log ]; then grep -v -i "password\|ASP" sign.log > ci-sign-log.txt || cp sign.log ci-sign-log.txt; else echo "sem sign.log" > ci-sign-log.txt; fi
+          if [ -f sign.log ]; then grep -v -i "password\|ASP\|ghp_" sign.log > ci-sign-log.txt || cp sign.log ci-sign-log.txt; else echo "sem sign.log" > ci-sign-log.txt; fi
           git add -A
           git commit -qm "ci: sign log run ${GITHUB_RUN_NUMBER}" || true
           git push || true
