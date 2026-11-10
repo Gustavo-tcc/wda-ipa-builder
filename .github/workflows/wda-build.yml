@@ -1,0 +1,61 @@
+name: Build WDA IPA
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * 1"  # rebuild semanal (renova o IPA p/ re-assinatura de 7 dias)
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Clone appium WebDriverAgent
+        run: git clone --depth 1 https://github.com/appium/WebDriverAgent.git
+
+      - name: Build WebDriverAgentRunner (unsigned)
+        run: |
+          cd WebDriverAgent
+          xcodebuild build-for-testing \
+            -project WebDriverAgent.xcodeproj \
+            -scheme WebDriverAgentRunner \
+            -sdk iphoneos \
+            -configuration Release \
+            -destination generic/platform=iOS \
+            -derivedDataPath "$GITHUB_WORKSPACE/wda-build" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
+          APP="$GITHUB_WORKSPACE/wda-build/Build/Products/Release-iphoneos/WebDriverAgentRunner-Runner.app"
+          if [ ! -d "$APP" ]; then
+            echo "Runner .app nao encontrado:"
+            find "$GITHUB_WORKSPACE/wda-build" -name "*.app" || true
+            exit 1
+          fi
+
+      - name: Package IPA
+        run: |
+          SRC="$GITHUB_WORKSPACE/wda-build/Build/Products/Release-iphoneos"
+          mkdir -p "$GITHUB_WORKSPACE/Payload"
+          cp -R "$SRC/WebDriverAgentRunner-Runner.app" "$GITHUB_WORKSPACE/Payload/"
+          cd "$GITHUB_WORKSPACE"
+          zip -qry WebDriverAgent.ipa Payload
+          ls -la WebDriverAgent.ipa
+          unzip -l WebDriverAgent.ipa | head -20
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WebDriverAgent-ipa
+          path: WebDriverAgent.ipa
+
+      - name: Create Release com o IPA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="wda-${GITHUB_RUN_NUMBER}"
+          gh release create "$TAG" WebDriverAgent.ipa \
+            --title "WebDriverAgentRunner IPA ($TAG)" \
+            --notes "IPA nao assinado (Release, iphoneos) do appium/WebDriverAgent. Re-assinar com AltServer/AltServer-Linux antes de instalar." \
+            --repo "$GITHUB_REPOSITORY"
