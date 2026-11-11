@@ -3,9 +3,6 @@
 + git config --global --add safe.directory /Users/runner/work/wda-ipa-builder/wda-ipa-builder
 + echo 'APPLE_ID set: yes'
 APPLE_ID set: yes
-+ sudo gem install fastlane -N --no-document
-Successfully installed fastlane-2.241.2
-1 gem installed
 + fastlane --version
 fastlane installation at path:
 /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/bin/fastlane
@@ -17,22 +14,62 @@ fastlane 2.241.2
 + git commit -q --allow-empty -m init
 + cd /Users/runner/work/wda-ipa-builder/wda-ipa-builder
 + set +x
-+ fastlane run register_device udid:8c2ed50ba1cabe9fa883d83417fc5b97b8eb8136 name:iPad-PoC
-[05:21:07]: [33mGet started using a Gemfile for fastlane https://docs.fastlane.tools/getting-started/ios/setup/#use-a-gemfile[0m
-[05:21:07]: fastlane 2.241.2 (Ruby 3.3.13, gem)
-[05:21:08]: Sending anonymous analytics information
-[05:21:08]: Learn more at https://docs.fastlane.tools/#metrics
-[05:21:08]: No personal or sensitive data is sent.
-[05:21:08]: You can disable this by adding `opt_out_usage` at the top of your Fastfile
-[05:21:08]: [32m-----------------------------[0m
-[05:21:08]: [32m--- Step: register_device ---[0m
-[05:21:08]: [32m-----------------------------[0m
-[05:21:08]: Login to App Store Connect (gtcchiesa@hotmail.com)
++ fastlane spaceauth -u gtcchiesa@hotmail.com
+[05:28:59]: [33mGet started using a Gemfile for fastlane https://docs.fastlane.tools/getting-started/ios/setup/#use-a-gemfile[0m
+[05:28:59]: fastlane 2.241.2 (Ruby 3.3.13, gem)
+[05:29:00]: Sending anonymous analytics information
+[05:29:00]: Learn more at https://docs.fastlane.tools/#metrics
+[05:29:00]: No personal or sensitive data is sent.
+[05:29:00]: You can disable this by adding `opt_out_usage` at the top of your Fastfile
+Logging into to App Store Connect (gtcchiesa@hotmail.com)...
+[32m-------------------------------------------------------------------------------------[0m
+[32mPlease provide your Apple Developer Program account credentials[0m
+[32mThe login information you enter will be stored in your macOS Keychain[0m
+[32mSee more information about it on GitHub: https://github.com/fastlane/fastlane/tree/master/credentials_manager[0m
+[32m-------------------------------------------------------------------------------------[0m
+[31mCould not login to App Store Connect[0m
+[33mPlease check your credentials and try again.[0m
+[33mThis could be an issue with App Store Connect,[0m
+[33m(if it is set) and re-run `fastlane spaceauth`[0m
+
+Exception type: RuntimeError
 
 Looking for related GitHub issues on fastlane/fastlane...
 
 Found no similar issues. To create a new issue, please visit:
 https://github.com/fastlane/fastlane/issues/new
 Run `fastlane env` to append the fastlane environment to your issue
-[31m
-[!] The request could not be completed because:
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/client.rb:391:in `login'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/client.rb:363:in `login'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/tunes/spaceship.rb:24:in `login'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/spaceauth_runner.rb:20:in `run'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:53:in `block (2 levels) in run'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/command.rb:187:in `call'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/command.rb:157:in `run'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in `run!'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:59:in `run'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:15:in `start'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/fastlane/lib/fastlane/cli_tools_distributor.rb:125:in `take_off'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/bin/fastlane:25:in `<top (required)>'
+	from /opt/homebrew/Cellar/ruby@3.3/3.3.13/lib/ruby/3.3.0/rubygems.rb:305:in `load'
+	from /opt/homebrew/Cellar/ruby@3.3/3.3.13/lib/ruby/3.3.0/rubygems.rb:305:in `activate_and_load_bin_path'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/bin/fastlane:25:in `<main>'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/client.rb:391:in `login'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/client.rb:363:in `login'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/tunes/spaceship.rb:24:in `login'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/spaceauth_runner.rb:20:in `run'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:53:in `block (2 levels) in run'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/command.rb:187:in `call'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/command.rb:157:in `run'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in `run!'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:59:in `run'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:15:in `start'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/fastlane/lib/fastlane/cli_tools_distributor.rb:125:in `take_off'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/bin/fastlane:25:in `<top (required)>'
+	from /opt/homebrew/Cellar/ruby@3.3/3.3.13/lib/ruby/3.3.0/rubygems.rb:305:in `load'
+	from /opt/homebrew/Cellar/ruby@3.3/3.3.13/lib/ruby/3.3.0/rubygems.rb:305:in `activate_and_load_bin_path'
+	from /opt/homebrew/lib/ruby/gems/3.3.0/bin/fastlane:25:in `<main>'
