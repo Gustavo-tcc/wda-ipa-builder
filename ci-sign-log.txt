@@ -18,16 +18,16 @@ fastlane 2.241.2
 + cd /Users/runner/work/wda-ipa-builder/wda-ipa-builder
 + set +x
 + fastlane run register_device udid:8c2ed50ba1cabe9fa883d83417fc5b97b8eb8136 name:iPad-PoC
-[15:35:11]: [33mGet started using a Gemfile for fastlane https://docs.fastlane.tools/getting-started/ios/setup/#use-a-gemfile[0m
-[15:35:11]: fastlane 2.241.2 (Ruby 3.3.13, gem)
-[15:35:12]: Sending anonymous analytics information
-[15:35:12]: Learn more at https://docs.fastlane.tools/#metrics
-[15:35:12]: No personal or sensitive data is sent.
-[15:35:12]: You can disable this by adding `opt_out_usage` at the top of your Fastfile
-[15:35:12]: [32m-----------------------------[0m
-[15:35:12]: [32m--- Step: register_device ---[0m
-[15:35:12]: [32m-----------------------------[0m
-[15:35:12]: Login to App Store Connect (gtcchiesa@hotmail.com)
+[05:21:07]: [33mGet started using a Gemfile for fastlane https://docs.fastlane.tools/getting-started/ios/setup/#use-a-gemfile[0m
+[05:21:07]: fastlane 2.241.2 (Ruby 3.3.13, gem)
+[05:21:08]: Sending anonymous analytics information
+[05:21:08]: Learn more at https://docs.fastlane.tools/#metrics
+[05:21:08]: No personal or sensitive data is sent.
+[05:21:08]: You can disable this by adding `opt_out_usage` at the top of your Fastfile
+[05:21:08]: [32m-----------------------------[0m
+[05:21:08]: [32m--- Step: register_device ---[0m
+[05:21:08]: [32m-----------------------------[0m
+[05:21:08]: Login to App Store Connect (gtcchiesa@hotmail.com)
 
 Looking for related GitHub issues on fastlane/fastlane...
 
