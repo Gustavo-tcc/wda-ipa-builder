@@ -15,67 +15,51 @@ fastlane 2.241.2
 + cd /Users/runner/work/wda-ipa-builder/wda-ipa-builder
 + set +x
 + fastlane spaceauth -u gtcchiesa@hotmail.com
-[05:28:59]: [33mGet started using a Gemfile for fastlane https://docs.fastlane.tools/getting-started/ios/setup/#use-a-gemfile[0m
-[05:28:59]: fastlane 2.241.2 (Ruby 3.3.13, gem)
-[05:29:00]: Sending anonymous analytics information
-[05:29:00]: Learn more at https://docs.fastlane.tools/#metrics
-[05:29:00]: No personal or sensitive data is sent.
-[05:29:00]: You can disable this by adding `opt_out_usage` at the top of your Fastfile
+[05:47:26]: [33mGet started using a Gemfile for fastlane https://docs.fastlane.tools/getting-started/ios/setup/#use-a-gemfile[0m
+[05:47:26]: fastlane 2.241.2 (Ruby 3.3.13, gem)
+[05:47:27]: Sending anonymous analytics information
+[05:47:27]: Learn more at https://docs.fastlane.tools/#metrics
+[05:47:27]: No personal or sensitive data is sent.
+[05:47:27]: You can disable this by adding `opt_out_usage` at the top of your Fastfile
 Logging into to App Store Connect (gtcchiesa@hotmail.com)...
-[32m-------------------------------------------------------------------------------------[0m
-[32mPlease provide your Apple Developer Program account credentials[0m
-[32mThe login information you enter will be stored in your macOS Keychain[0m
-[32mYou can also pass the password using the `FASTLANE_PASSWORD` environment variable[0m
-[32mSee more information about it on GitHub: https://github.com/fastlane/fastlane/tree/master/credentials_manager[0m
-[32m-------------------------------------------------------------------------------------[0m
+Two-factor Authentication (6 digits code) is enabled for account 'gtcchiesa@hotmail.com'
+More information about Two-factor Authentication: https://support.apple.com/en-us/HT204915
+
+If you're running this in a non-interactive session (e.g. server or CI)
+check out https://github.com/fastlane/fastlane/tree/master/spaceship#2-step-verification
+
+(Input `sms` to escape this prompt and select a trusted phone number to send the code as a text message)
+
+(You can also set the environment variable `SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER` to automate this)
+(Read more at: https://github.com/fastlane/fastlane/blob/master/spaceship/docs/Authentication.md#auto-select-sms-via-spaceship_2fa_sms_default_phone_number)
+
+Please enter the 6 digit code:
+Requesting session...
 [31mCould not login to App Store Connect[0m
 [33mPlease check your credentials and try again.[0m
 [33mThis could be an issue with App Store Connect,[0m
 [33mPlease try unsetting the FASTLANE_SESSION environment variable by calling 'unset FASTLANE_SESSION'[0m
 [33m(if it is set) and re-run `fastlane spaceauth`[0m
 
-Exception type: RuntimeError
+Exception type: Spaceship::UnauthorizedAccessError
 
 Looking for related GitHub issues on fastlane/fastlane...
 
-Found no similar issues. To create a new issue, please visit:
-https://github.com/fastlane/fastlane/issues/new
-Run `fastlane env` to append the fastlane environment to your issue
-/opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/credentials_manager/lib/credentials_manager/account_manager.rb:139:in `ask_for_login': [31m[!] Missing password for user gtcchiesa@hotmail.com, and running in non-interactive shell[0m (RuntimeError)
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/credentials_manager/lib/credentials_manager/account_manager.rb:60:in `password'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/client.rb:391:in `login'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/client.rb:363:in `login'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/tunes/spaceship.rb:24:in `login'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/spaceauth_runner.rb:20:in `run'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:53:in `block (2 levels) in run'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/command.rb:187:in `call'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/command.rb:157:in `run'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in `run!'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:59:in `run'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:15:in `start'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/fastlane/lib/fastlane/cli_tools_distributor.rb:125:in `take_off'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/bin/fastlane:25:in `<top (required)>'
-	from /opt/homebrew/Cellar/ruby@3.3/3.3.13/lib/ruby/3.3.0/rubygems.rb:305:in `load'
-	from /opt/homebrew/Cellar/ruby@3.3/3.3.13/lib/ruby/3.3.0/rubygems.rb:305:in `activate_and_load_bin_path'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/bin/fastlane:25:in `<main>'
-/opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/credentials_manager/lib/credentials_manager/account_manager.rb:139:in `ask_for_login': Missing password for user gtcchiesa@hotmail.com, and running in non-interactive shell (RuntimeError)
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/credentials_manager/lib/credentials_manager/account_manager.rb:60:in `password'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/client.rb:391:in `login'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/client.rb:363:in `login'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/tunes/spaceship.rb:24:in `login'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/spaceauth_runner.rb:20:in `run'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:53:in `block (2 levels) in run'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/command.rb:187:in `call'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/command.rb:157:in `run'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in `run!'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:59:in `run'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/spaceship/lib/spaceship/commands_generator.rb:15:in `start'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/fastlane/lib/fastlane/cli_tools_distributor.rb:125:in `take_off'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/gems/fastlane-2.241.2/bin/fastlane:25:in `<top (required)>'
-	from /opt/homebrew/Cellar/ruby@3.3/3.3.13/lib/ruby/3.3.0/rubygems.rb:305:in `load'
-	from /opt/homebrew/Cellar/ruby@3.3/3.3.13/lib/ruby/3.3.0/rubygems.rb:305:in `activate_and_load_bin_path'
-	from /opt/homebrew/lib/ruby/gems/3.3.0/bin/fastlane:25:in `<main>'
+➡️  [33mUnauthorised Access when running `match` and SMS 2FA[0m
+    https://github.com/fastlane/fastlane/issues/21132 [[31mopen[0m] 15 💬
+    28 Apr 2025
+
+➡️  [33m"Google Api Error: Unauthorized - Request is missing required authentication credential" running create_app_on_managed_play_store/upload_to_play_store lanes[0m
+    https://github.com/fastlane/fastlane/issues/21091 [[32mclosed[0m] 108 💬
+    4 weeks ago
+
+➡️  [33mApple ID auth not working - 503 Service Temporarily Unavailable on various fastlane modules[0m
+    https://github.com/fastlane/fastlane/issues/26368 [[32mclosed[0m] 216 💬
+    27 Apr 2026
+
+and 31 more at: https://github.com/fastlane/fastlane/search?q=The%20request%20could%20not%20be%20completed%20because%3A%0A%09Unauthorized%20Access&type=Issues&utf8=✓
+
+🔗  You can ⌘ + double-click on links to open them directly in your browser.
+[31m
+[!] The request could not be completed because:
+	Unauthorized Access[0m
