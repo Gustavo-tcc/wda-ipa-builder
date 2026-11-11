@@ -1,1 +1,1 @@
-trigger com APPLE_PASSWORD configurado
+trigger pos Developer Agreement aceito
