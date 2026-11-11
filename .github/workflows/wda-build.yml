@@ -3,6 +3,11 @@ name: Build WDA IPA
 "on":
   push:
   workflow_dispatch:
+    inputs:
+      twofa:
+        description: "Codigo 2FA de 6 digitos (Ajustes > seu nome > Inicio de Sessao e Seguranca > Obter Codigo de Verificacao)"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -55,13 +60,14 @@ jobs:
     runs-on: macos-15
     env:
       APPLE_ID: ${{ secrets.APPLE_ID }}
-      APPLE_ASP: ${{ secrets.APPLE_ASP }}
+      APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
       DEVICE_UDID: 8c2ed50ba1cabe9fa883d83417fc5b97b8eb8136
       BUNDLE_ID: com.facebook.WebDriverAgentRunner
+      TWofa: ${{ inputs.twofa }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: sign (log completo em sign.log, secrets blindados)
+      - name: sign (spaceauth com 2FA + match + build assinado)
         run: |
           set -o pipefail
           {
@@ -70,17 +76,17 @@ jobs:
             git config --global user.name "ci"
             git config --global --add safe.directory "$GITHUB_WORKSPACE"
             echo "APPLE_ID set: ${APPLE_ID:+yes}"
-            sudo gem install fastlane -N --no-document
-            fastlane --version
+            fastlane --version || sudo gem install fastlane -N --no-document
             mkdir -p /tmp/matchrepo && cd /tmp/matchrepo
             git init -q && git commit -q --allow-empty -m init
             cd "$GITHUB_WORKSPACE"
             set +x
             export FASTLANE_USER="$APPLE_ID"
-            export FASTLANE_PASSWORD="$APPLE_ASP"
-            export FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="$APPLE_ASP"
+            export FASTLANE_PASSWORD="$APPLE_PASSWORD"
+            export FASTLANE_2FA_CODE="$TWofa"
             export MATCH_PASSWORD="wda-poc"
             set -x
+            fastlane spaceauth -u "$FASTLANE_USER"
             fastlane run register_device udid:"$DEVICE_UDID" name:"iPad-PoC"
             fastlane match development \
               --app_identifier "$BUNDLE_ID" \
@@ -132,7 +138,7 @@ jobs:
       - name: Commitar log do sign p/ debug (sem secrets)
         if: always()
         run: |
-          if [ -f sign.log ]; then grep -v -i "password\|ASP\|ghp_" sign.log > ci-sign-log.txt || cp sign.log ci-sign-log.txt; else echo "sem sign.log" > ci-sign-log.txt; fi
+          if [ -f sign.log ]; then grep -v -i "password\|2fa\|ghp_\|session" sign.log > ci-sign-log.txt || cp sign.log ci-sign-log.txt; else echo "sem sign.log" > ci-sign-log.txt; fi
           git add -A
           git commit -qm "ci: sign log run ${GITHUB_RUN_NUMBER}" || true
           git push || true
