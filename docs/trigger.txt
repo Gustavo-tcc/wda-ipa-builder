@@ -1,1 +1,1 @@
-trigger do run de sign
+trigger apos correcao do secret APPLE_ASP
