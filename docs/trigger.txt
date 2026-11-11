@@ -1,1 +1,1 @@
-trigger apos correcao do secret APPLE_ASP
+trigger com APPLE_PASSWORD configurado
